@@ -7,7 +7,7 @@ import { Dimensions } from 'react-native'
 import Geolocation from '@react-native-community/geolocation'
 
 class Home extends Component {
-  PropTypes = {
+  static propTypes = {
     navigation: PropTypes.object
   }
 
