@@ -1,19 +1,25 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { Text, View, TouchableOpacity } from 'react-native'
+import { ListItem } from 'react-native-elements'
 import { connect } from 'react-redux'
 import { FlatList } from 'react-native-gesture-handler'
 
 import { USERS_FETCH_REQUESTED } from '../REDUX_CONSTANTS'
 import { styles } from './Users.style'
 
-const Item = ({ name, id, onPress }) => (
-  <TouchableOpacity onPress={() => onPress(id)} underlayColor="white">
-    <View style={styles.item}>
-      <Text style={styles.title}>{name}</Text>
-    </View>
+const Item = ({ name, user, onPress }) => (
+  <TouchableOpacity onPress={() => onPress(user)} underlayColor="white">
+      <ListItem 
+        key={user.id}
+        title={name}
+        subtitle={user.company.name}
+        subtitleStyle={{color: '#65D9E4'}}
+        bottomDivider
+        chevron
+      />
   </TouchableOpacity>
 );
-
+// <Text style={styles.title}>{name}</Text>
 class Users extends Component {
 
   constructor(props){
@@ -22,10 +28,11 @@ class Users extends Component {
 
   componentDidMount(){
     this.props.fetchUsers()
+    this.onPress = this.onPress.bind(this)
   }
   
-  onPress(id){
-    console.log('press ', id)
+  onPress( user ){
+    this.props.navigation.navigate('Details', { user })
   }
 
   render () {
@@ -33,7 +40,7 @@ class Users extends Component {
       <View style={styles.container}>
         <FlatList
             data={this.props.users}
-            renderItem={({item, index}) => <Item name={item.name} id={item.id} onPress={this.onPress}/>}
+            renderItem={({item, index}) => <Item name={item.name} user={item} onPress={this.onPress}/>}
             keyExtractor={(item, index) => index.toString()}
         />
       </View>

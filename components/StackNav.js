@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import { NavigationContainer } from '@react-navigation/native'
-import { createStackNavigator } from '@react-navigation/stack'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 
 import Home from './Home'
-import Users from './Users'
+import UsersNesting from './UsersNesting'
 
-const Stack = createStackNavigator()
 const Drawer = createDrawerNavigator()
 
 export default function StackNav() {
@@ -14,7 +12,7 @@ export default function StackNav() {
         <NavigationContainer>
             <Drawer.Navigator>
                 <Drawer.Screen name="Home" component={Home}/>
-                <Drawer.Screen name="Usuarios" component={Users}/>
+                <Drawer.Screen name="Usuarios" component={UsersNesting}/>
             </Drawer.Navigator>
         </NavigationContainer>
     )
