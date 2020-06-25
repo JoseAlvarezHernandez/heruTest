@@ -13,6 +13,20 @@ or
 yarn install
 ```
 
+## Run Application
+
+Run 
+
+```
+npm start
+```
+
+and 
+
+```
+react-native run-android
+```
+
 ## Problems with React Native Map}
 
 You should execute this command in order to get the fixed version
